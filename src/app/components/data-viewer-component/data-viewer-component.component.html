@@ -1,0 +1,30 @@
+<div>
+  @if (fileData.length > 0) {
+    <h1>{{ headerofsection }}</h1>
+    @for (file of fileData; track $index) {
+      <div class="file-section">
+        <h3>{{ file.fileName }}</h3>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              @for (header of file.headers; track $index) {
+                <th>{{ header }}</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of file.rows; track $index) {
+              <tr>
+                @for (value of getObjectValues(row); track $index) {
+                  <td>{{ value }}</td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  } @else {
+    <p>No data</p>
+  }
+</div>

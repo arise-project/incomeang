@@ -1,0 +1,107 @@
+<div class="file-loader">
+  <h2>Загрузка файлов</h2>
+  <input type="file" webkitdirectory directory multiple (change)="onDirectorySelected($event)" />
+
+  <div *ngIf="errors.length > 0" class="error-list">
+    <h3>Ошибки</h3>
+    <ul>
+      @for (error of errors; track $index) {
+        <li>{{ error }}</li>
+      }
+    </ul>
+  </div>
+
+  <div class="tabs">
+    <div class="tab-buttons">
+      <button [class.active]="activeTab === 'raw'" (click)="activeTab = 'raw'">Исходные данные</button>
+      <button [class.active]="activeTab === 'grouped'" (click)="activeTab = 'grouped'">Группированные данные</button>
+      <button [class.active]="activeTab === 'summary'" (click)="activeTab = 'summary'">Итоговая таблица</button>
+    </div>
+
+    <div class="tab-content">
+      <div *ngIf="activeTab === 'raw'">
+        <app-data-viewer
+          [headerofsection]="'Исходные данные'"
+          [fileData]="fileData">
+        </app-data-viewer>
+      </div>
+
+      <div *ngIf="activeTab === 'grouped'">
+        <app-data-viewer
+          [headerofsection]="'Группированные данные'"
+          [fileData]="fileParsed">
+        </app-data-viewer>
+      </div>
+
+      <div *ngIf="activeTab === 'summary'">
+        <div class="summary-table">
+          <h3>Итоговая таблица</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Дата</th>
+                <th>Безналичные Z</th>
+                <th>Сумма банка</th>
+                <th>Наличные Z</th>
+                <th>Разница Банк - Z</th>
+                <th>Z - нал коррекция</th>
+                <th>Z - return</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of incomeReport; track $index) {
+                <tr>
+                  <td>{{ row.date }}</td>
+                  <td>{{ row.zSumNonCash }}</td>
+                  <td>{{ row.bankSum }}</td>
+                  <td>{{ row.zSumCash }}</td>
+                  <td>{{ row.difference }}</td>
+                  <td>{{ row.zCashCorrection }}</td>
+                  <td>{{ row.zRetSum }}</td>
+                  <td>{{ row.result }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <button (click)="exportToExcel()">Экспорт в Excel</button>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="onSummary()">Группировать и суммировать</button>
+  <button (click)="onGenerateIncomeReport()">Сформировать итоговую таблицу</button>
+</div>
+<!-- <div class="file-loader">
+  <h2>Download files</h2>
+  <input type="file" webkitdirectory directory multiple (change)="onDirectorySelected($event)"/>
+
+  <div *ngIf="errors.length > 0" class="error-list">
+    <h3>Errors</h3>
+    <ul>
+      @for (error of errors; track $index){
+        <li>{{ error }}</li>
+      }
+    </ul>
+  </div>
+
+
+<app-data-viewer
+  [headerofsection]="'Исходные данные'"
+  [fileData]="fileData">
+
+</app-data-viewer>
+
+<app-data-viewer
+  [headerofsection]="'Группированные данные'"
+  [fileData]="fileParsed">
+
+</app-data-viewer>
+
+<button (click)="onSummary()">Группировать и суммировать</button>
+
+<button (click)="onGenerateIncomeReport()">Generate Income Report</button>
+
+
+</div> -->
