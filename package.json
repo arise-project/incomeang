@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postinstall": "ng build", // Build the app after dependencies are installed
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -20,6 +21,7 @@
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
+    "@angular/cli": "^19.0.6", // Moved from devDependencies to dependencies
     "date-fns": "^4.1.0",
     "iconv-lite": "^0.6.3",
     "node-dbf": "^0.4.0",
@@ -31,7 +33,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.0.6",
-    "@angular/cli": "^19.0.6",
     "@angular/compiler-cli": "^19.0.0",
     "@types/jasmine": "~5.1.0",
     "@types/papaparse": "^5.3.15",
@@ -42,5 +43,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.6.2"
+  },
+  "engines": {
+    "node": "20.x", // Specify your Node.js version
+    "npm": "10.x"  // Specify your npm version
   }
 }
