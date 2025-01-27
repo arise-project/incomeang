@@ -29,9 +29,7 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
-    "zone.js": "~0.15.0"
-  },
-  "devDependencies": {
+    "zone.js": "~0.15.0",
     "@angular-devkit/build-angular": "^19.0.6",
     "@angular/compiler-cli": "^19.0.0",
     "@types/jasmine": "~5.1.0",
@@ -43,6 +41,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.6.2"
+  },
+  "devDependencies": {
+    
   },
   "engines": {
     "node": "20.x",
